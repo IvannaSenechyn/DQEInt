@@ -5,7 +5,7 @@ pipeline {
 
       stage('runpy') {
         steps{      
-          bat 'python test.py'
+          sh  'python test.py'
         }
         }
 
