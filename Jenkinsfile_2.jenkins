@@ -14,12 +14,12 @@ pipeline {
         }
         stage('archiveArtifacts') {
             steps {
-                archiveArtifacts artifacts: '**/*.xml', followSymlinks: false
+                archiveArtifacts artifacts: '**/*.xtml', followSymlinks: false
             }
         }
         stage('report') {
             steps {
-                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: '', reportFiles: 'report.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
+                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'Test7', reportFiles: 'report.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
             }
         }
     }
