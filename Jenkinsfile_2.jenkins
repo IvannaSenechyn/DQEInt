@@ -9,7 +9,7 @@ pipeline {
         }
         stage('build') {
             steps {
-                bat 'python test.py --html=reports/report.html'
+                bat 'python test.py'
             }
         }
         stage('archiveArtifacts') {
@@ -19,7 +19,7 @@ pipeline {
         }
         stage('report') {
             steps {
-                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'Test7', reportFiles: 'report.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
+                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: '', reportFiles: 'report.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
             }
         }
     }
