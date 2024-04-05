@@ -71,6 +71,6 @@ def test_values_within_range(expected_range_values):
                 FROM [Production].[UnitMeasure]
                 WHERE UnitMeasureCode BETWEEN 'CR' AND 'CS';
                 """
-
+print('Hello World')
 # pytest test.py
 # pytest test.py --html=report.html
