@@ -9,23 +9,18 @@ pipeline {
         }
         stage('build') {
             steps {
-                bat 'python test.py --html=report.html'
+                bat 'python test.py --html=reports/report.html'
             }
         }
         stage('report') {
             steps {
-                script {
-                    dir('reports') {
-                        bat 'mkdir reports'
-                    }
-                }
                 publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'reports', reportFiles: 'report.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
             }
         }
     }
     post {
         success {
-            publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'reports', reportFiles: 'report.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
+            publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'reports', reportFiles: 'report.html', reportName: 'HTML Report 2', reportTitles: '', useWrapperFileDirectly: true])
         }
     }
 }
