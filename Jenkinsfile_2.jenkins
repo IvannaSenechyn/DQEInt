@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('checkout git') {
+            steps {
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/IvannaSenechyn/DQE_Int.git']])
+            }
+        }
+        stage('build') {
+            steps {
+                bat 'python test.py --html=report.html'
+            }
+        }
+        stage('report') {
+            steps {
+                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'reports', reportFiles: 'report.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
+            }
+        }
+    }
+    post {
+        success {
+            publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'reports', reportFiles: 'report.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
+        }
+    }
+}
