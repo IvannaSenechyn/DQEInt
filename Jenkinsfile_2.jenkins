@@ -12,6 +12,15 @@ pipeline {
                 bat 'python test.py --html=report.html'
             }
         }
+        stage('create reports directory') {
+            steps {
+                script {
+                    dir('reports') {
+                        bat 'mkdir reports'
+                    }
+                }
+            }
+        }
         stage('report') {
             steps {
                 publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'reports', reportFiles: 'report.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
